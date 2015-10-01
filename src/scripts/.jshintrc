@@ -15,6 +15,7 @@
   "trailing": true,
   "maxerr": 50,
   "globals": {
-    "Promise": true
+    "App": true,
+    "Ember": true
   }
 }
