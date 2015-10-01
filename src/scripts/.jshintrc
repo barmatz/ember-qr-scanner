@@ -14,8 +14,10 @@
   "strict": true,
   "trailing": true,
   "maxerr": 50,
+  "devel": true,
   "globals": {
     "App": true,
-    "Ember": true
+    "Ember": true,
+    "WebCodeCamJS": true
   }
 }

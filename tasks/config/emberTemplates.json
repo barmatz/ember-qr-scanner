@@ -8,7 +8,7 @@
       "templateBasePath": "./src/templates/"
     },
     "files": {
-      "./.tmp/javascripts/templates.js": "./src/templates/**/*.hbs"
+      "./.tmp/scripts/templates.js": "./src/templates/**/*.hbs"
     }
   }
 }
