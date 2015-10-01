@@ -3,6 +3,11 @@
 
   App.QrScannerComponent = Ember.Component.extend({
     decoder: null,
+    active: false,
+    result: null,
+    imageSrc: null,
+    error: null,
+    connected: false,
     decodeQrCodeRate: 5,
     decodeBarCodeRate: 5,
     frameRate: 15,
@@ -22,8 +27,16 @@
     contrast: 0,
     threshold: 0,
     sharpness: null,
+    activeDidChange: Ember.observer('active', function () {
+      if (this.get('active')) {
+        this.play();
+      } else {
+        this.stop();
+      }
+    }),
     didInsertElement: function () {
-      var decoder = new WebCodeCamJS(this.$('canvas').get(0))
+      var self = this
+        , decoder = new WebCodeCamJS(this.$('canvas').get(0))
             .buildSelectMenu(this.$('select').get(0))
             .init({
               DecodeQRCodeRate: this.get('decodeQrCodeRate'),
@@ -32,16 +45,16 @@
               width: this.get('width'),
               height: this.get('height'),
               constraints: {
-                  video: {
-                      mandatory: {
-                          maxWidth: this.get('videoMaxWidth'),
-                          maxHeight: this.get('videoMaxHeight')
-                      },
-                      optional: [{
-                          sourceId: this.get('videoSourceId')
-                      }]
+                video: {
+                  mandatory: {
+                    maxWidth: this.get('videoMaxWidth'),
+                    maxHeight: this.get('videoMaxHeight')
                   },
-                  audio: this.get('audio')
+                  optional: [{
+                    sourceId: this.get('videoSourceId')
+                  }]
+                },
+                audio: this.get('audio')
               },
               flipVertical: this.get('flipVertical'),
               flipHorizontal: this.get('flipHorizontal'),
@@ -53,27 +66,41 @@
               contrast: this.get('contrast'),
               threshold: this.get('threshold'),
               sharpness: this.get('sharpness'),
-              resultFunction: function(resText ,lastImageSrc) {
-                console.log('resText: %s ,lastImageSrc: %s', resText ,lastImageSrc);
+              resultFunction: function(resText, lastImageSrc) {
+                self.setProperties({
+                  result: resText,
+                  imageSrc: lastImageSrc
+                });
               },
               cameraSuccess: function(stream) {
-                console.log('cameraSuccess', stream);
+                self.set('connected', true);
+                self.sendAction('didConnect', stream);
               },
               canPlayFunction: function() {
-                console.log('canPlayFunction');
+                self.sendAction('canPlay');
               },
               getDevicesError: function(err) {
-                console.log('error', err);
+                self.set('error', err);
+                self.sendAction('deviceFailed', err);
               },
               getUserMediaError: function(err) {
-                console.log('error', err);
+                self.set('error', err);
+                self.sendAction('userMediaFailed', err);
               },
               cameraError: function(err) {
-                console.log('error', err);
+                self.set('error', err);
+                self.sendAction('cameraFailed', err);
               }
             });
 
       this.set('decoder', decoder);
+
+      if (this.get('active')) {
+        this.play();
+      }
+    },
+    willDestroyElement: function () {
+      this.stop();
     },
     stop: function () {
       return this.get('decoder').stop();

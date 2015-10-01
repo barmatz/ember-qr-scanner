@@ -1,1 +1,7 @@
-{{qr-scanner}}
+{{qr-scanner active=true result=code error=qrError connected=cameraConnected}}
+
+<div>
+  connected: {{cameraConnected}}<br/>
+  code: {{code}}<br/>
+  error: {{qrError.name}} {{qrError.message}}
+</div>
