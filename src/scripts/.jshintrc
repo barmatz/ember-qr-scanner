@@ -1,0 +1,20 @@
+{
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "freeze": true,
+  "laxcomma": true,
+  "latedef": "nofunc",
+  "noarg": true,
+  "nonbsp": true,
+  "nonew": true,
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "trailing": true,
+  "maxerr": 50,
+  "globals": {
+    "Promise": true
+  }
+}

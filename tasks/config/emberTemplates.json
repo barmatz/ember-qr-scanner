@@ -1,0 +1,14 @@
+{
+  "options": {
+    "templateCompilerPath": "./bower_components/ember/ember-template-compiler.js",
+    "handlebarsPath": "./bower_components/handlebars/handlebars.js"
+  },
+  "all": {
+    "options": {
+      "templateBasePath": "./src/templates/"
+    },
+    "files": {
+      "./.tmp/javascripts/templates.js": "./src/templates/**/*.hbs"
+    }
+  }
+}

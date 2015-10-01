@@ -1,0 +1,10 @@
+{
+  "options": {
+    "sourceMap": true
+  },
+  "all": {
+    "files": {
+      "./public/scripts/app.min.js": "./public/scripts/app.js"
+    }
+  }  
+}

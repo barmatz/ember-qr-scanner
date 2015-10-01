@@ -1,0 +1,10 @@
+{
+  "options": {
+    "jshintrc": true
+  },
+  "all": [
+    "./{.jshintrc,*.js,*.json}",
+    "./{src/scripts,tasks}/**/.jshintrc",
+    "./{src/scripts,tasks}/**/{.jshintrc,*.js,*.json}"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "grunt": {
+    "files": [ "./Gruntfile.js", "./package.json", "./tasks/**/*.{js,json}" ],
+    "tasks": [ "default" ]
+  },
+  "node": {
+    "files": [ "*.{js,json}", "**/.jshintrc" ],
+    "tasks": [ "lint:scripts" ]
+  },
+  "scripts": {
+    "files": [ "./src/javascripts/**/*.js" ],
+    "tasks": [ "scripts" ]
+  },
+  "templates": {
+    "files": [ "./src/templates/**/*.hbs" ],
+    "tasks": [ "build:scripts" ]
+  }
+}

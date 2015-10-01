@@ -1,0 +1,23 @@
+{
+  "app": {
+    "files": {
+      "./public/scripts/app.js": [
+        "./.tmp/scripts/templates.js",
+        "./src/scripts/initilizers/**/*.js",
+        "./src/scripts/application.js",
+        "./src/scripts/router.js",
+        "./src/scripts/mixins/**/*.js",
+        "./src/scripts/adapters/**/*.js",
+        "./src/scripts/services/**/*.js",
+        "./src/scripts/models/role.js",
+        "./src/scripts/models/**/*.js",
+        "./src/scripts/routes/**/*.js",
+        "./src/scripts/controllers/**/*.js",
+        "./src/scripts/views/**/*.js",
+        "./src/scripts/components/**/*.js",
+        "./src/scripts/helpers/**/*.js",
+        "./src/scripts/**/*.js"
+      ]
+    }
+  }
+}
